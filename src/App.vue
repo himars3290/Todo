@@ -1,28 +1,79 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home">
+    <img alt="Vue Logo" id="vue-logo" src="@/assets/logo.png"/>
+    <div class="title">What do i need to do today?</div>
+    <input v-model="myTodo"/>
+    <button @click="addToDo">Add</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'app',
+    data() {
+      return {
+        myTodo: ''
+      }
+    },
+    methods: {
+      addToDo() {
+        // eslint-disable-next-line no-console
+        console.log('myTodo: ' + this.myTodo);
+      }
+    },
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, #app {
+    background: #8ac8e5;
+  }
+
+  .home {
+    width: 300px;
+    margin: auto;
+  }
+
+  #vue-logo{
+    width: 100px;
+  }
+
+  input,button{
+    border:0;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 7px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  button{
+    background: #43b823;
+    border: 0;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .title{
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #666;
+  }
+
+  #errors{
+    background: #a52222;
+    color: #ffffff;
+    padding:5px;
+  }
 </style>
