@@ -4,11 +4,12 @@
     <div class="title">What do i need to do today?</div>
     <input v-model="myTodo"/>
     <button @click="addToDo">Add</button>
-    <div id="errors" v-if="error !== ''"> {{errors}}</div>
+    <div id="errors" v-if="errors !== ''"> {{errors}}</div>
   </div>
 </template>
 
 <script>
+  import {db} from '@/main';
   export default {
     name: 'app',
     data() {
@@ -21,8 +22,16 @@
       addToDo() {
         this.errors = '';
         if (this.myTodo !== '') {
-          // eslint-disable-next-line no-console
-          console.log("test");
+          db.collection('items').add({
+            title: this.myTodo,
+            createdAt: Date.now()
+          }).then(response => {
+              if(response) {
+                this.myTodo = ''
+              }
+          }).catch(error => {
+            this.errors = error;
+          })
         } else {
           this.errors = "Enter a todo"
         }
