@@ -55,6 +55,21 @@ export default {
       } else {
         this.errors = 'Enter a todo'
       }
+    },
+    deleteItem(id) {
+      if (id) {
+        db.collection('items')
+          .doc(id)
+          .delete()
+          .then(function() {
+            console.log('deleted item')
+          })
+          .catch(function(error) {
+            this.errors = error
+          })
+      } else{
+        this.errors = 'no ID'
+      }
     }
   }
 }
