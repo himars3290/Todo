@@ -4,22 +4,28 @@
     <div class="title">What do i need to do today?</div>
     <input v-model="myTodo"/>
     <button @click="addToDo">Add</button>
+    <div id="errors" v-if="error !== ''"> {{errors}}</div>
   </div>
 </template>
 
 <script>
-
   export default {
     name: 'app',
     data() {
       return {
-        myTodo: ''
+        myTodo: '',
+        errors: ''
       }
     },
     methods: {
       addToDo() {
-        // eslint-disable-next-line no-console
-        console.log('myTodo: ' + this.myTodo);
+        this.errors = '';
+        if (this.myTodo !== '') {
+          // eslint-disable-next-line no-console
+          console.log("test");
+        } else {
+          this.errors = "Enter a todo"
+        }
       }
     },
   }
@@ -39,12 +45,12 @@
     margin: auto;
   }
 
-  #vue-logo{
+  #vue-logo {
     width: 100px;
   }
 
-  input,button{
-    border:0;
+  input, button {
+    border: 0;
     width: 100%;
     margin: 0 0 10px;
     padding: 7px;
@@ -54,7 +60,7 @@
     font-size: 12px;
   }
 
-  button{
+  button {
     background: #43b823;
     border: 0;
     text-transform: uppercase;
@@ -63,7 +69,7 @@
     cursor: pointer;
   }
 
-  .title{
+  .title {
     font-size: 14px;
     font-weight: 700;
     padding: 0 0 10px 0;
@@ -71,9 +77,9 @@
     border-bottom: 1px solid #666;
   }
 
-  #errors{
+  #errors {
     background: #a52222;
     color: #ffffff;
-    padding:5px;
+    padding: 5px;
   }
 </style>
